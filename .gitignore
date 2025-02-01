@@ -1,3 +1,6 @@
 node_modules
 .env
 patients.json
+comments.json
+newsletters.json
+practitioners.json
