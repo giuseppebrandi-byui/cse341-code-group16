@@ -5,5 +5,6 @@ Participants:
 - Giuseppe Elia Brandi
 - Daniel Andres Concha
 - José Antonio Meléndez
+- Wilfred Eiron Araga
 
 Render link: [https://cse341-code-group16.onrender.com/](https://cse341-code-group16.onrender.com/)
