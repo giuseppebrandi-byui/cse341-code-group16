@@ -29,9 +29,9 @@ const deleteComment = async(req, res) => {
 };
 
 module.exports = {
-    getAll,
-    getSingle,
+    // getAll, // This is commented because it causes a not defined error
+    // getSingle,
     createComment,
-    updateComment,
+    // updateComment,
     deleteComment
 };

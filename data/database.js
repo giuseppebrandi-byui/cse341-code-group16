@@ -20,6 +20,10 @@ const initDb = (callback) => {
     });
 };
 
+/**
+ * 
+ * @returns {import("mongodb").MongoClient}
+ */
 const getDatabase = () => {
   if (!database) {
     throw Error('Database is not initialized');
