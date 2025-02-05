@@ -26,10 +26,41 @@ const deleteNewsLetter = async(req, res) => {
     }
 };
 
+const updateNewsLetter = async (req, res) => {
+    const newsletterId = new ObjectId(req.params.id);
+
+    const data = {
+        name: req.body.name,
+        email: req.body.email,
+    };
+
+    try {
+        const response = await mongodb
+            .getDatabase()
+            .db()
+            .collection("newsletters")
+            .replaceOne({ _id: newsletterId }, data);
+
+        if (!response.acknowledged || response.modifiedCount === 0) {
+            return res
+                .status(500)
+                .json("Some error ocurred while updating the newsletter.");
+        }
+    } catch (error) {
+        console.error(error);
+
+        return res
+            .status(500)
+            .json("Some error ocurred while updating the newsletter.");
+    }
+
+    res.status(204).send();
+};
+
 module.exports = {
     // getAll, // This is commented because it causes a not defined error
     // getSingle,
     createNewsLetter,
-    // updateNewsLetter,
+    updateNewsLetter,
     deleteNewsLetter
 };
