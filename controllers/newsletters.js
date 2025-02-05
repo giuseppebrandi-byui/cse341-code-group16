@@ -27,14 +27,14 @@ const deleteNewsLetter = async(req, res) => {
 };
 
 const updateNewsLetter = async (req, res) => {
-    const newsletterId = new ObjectId(req.params.id);
-
-    const data = {
-        name: req.body.name,
-        email: req.body.email,
-    };
-
     try {
+        const newsletterId = new ObjectId(req.params.id);
+
+        const data = {
+            name: req.body.name,
+            email: req.body.email,
+        };
+
         const response = await mongodb
             .getDatabase()
             .db()

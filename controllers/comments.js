@@ -45,16 +45,16 @@ const deleteComment = async (req, res) => {
 };
 
 const updateComment = async (req, res) => {
-  const commentId = new ObjectId(req.params.id);
+    try {
+    const commentId = new ObjectId(req.params.id);
 
-  const data = {
-    name: req.body.name,
-    username: req.body.username,
-    email: req.body.email,
-    comment: req.body.comment,
-  };
+    const data = {
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        comment: req.body.comment,
+    };
 
-  try {
     const response = await mongodb
       .getDatabase()
       .db()
