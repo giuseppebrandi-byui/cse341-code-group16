@@ -1,0 +1,30 @@
+## LOCALHOST
+### GET all comments
+GET http://localhost:3000/comments
+
+### GET comment by ID
+GET http://localhost:3000/comments/679e85fca04d19f37756eab0
+
+### CREATE comment
+POST http://localhost:3000/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Brian Cox",
+    "username": "superbrian",
+    "email": "brian.cox@example.com",
+    "comment": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+}
+### PUT comment
+PUT http://localhost:3000/comments/679e85fca04d19f37756eab1 HTTP/1.1
+Content-Type: application/json 
+
+{
+    "name": "Richard Smith",
+    "username": "richestsmith",
+    "email": "richard.smith477@example.com",
+    "comment": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+}
+### DELETE comment
+DELETE http://localhost:3000/comments/67a3f5e4feccc1729b4598c4 HTTP/1.1
+Content-Type: application/json
