@@ -4,7 +4,7 @@ This is a project for the BYU-I CSE 341 course
 Participants:
 - Giuseppe Elia Brandi
 - Daniel Andres Concha
-- José Antonio Meléndez
+- Jose Antonio Meléndez
 - Wilfred Eiron Araga
 
 Render link: [https://cse341-code-group16.onrender.com/](https://cse341-code-group16.onrender.com/)
