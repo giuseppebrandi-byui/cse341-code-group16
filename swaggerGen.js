@@ -1,4 +1,4 @@
-const swaggerAutogen = require("swagger-autogen")
+const swaggerAutogen = require("swagger-autogen");
 
 const doc = {
   info: {
@@ -8,19 +8,27 @@ const doc = {
   },
   host: "cse341-code-group16.onrender.com",
   schemes: ["https"],
-//   securityDefinitions: { // This is not implemented yet
-//     OAuth2: {
-//       type: "oauth2",
-//       flow: "authorizationCode",
-//       authorizationUrl: "/login",
-//       scopes: { user: "Access user data" },
-//     },
-//   },
-//   security: [
-//     {
-//       OAuth2: ["user"],
-//     },
-//   ],
+  definitions: {
+    Comment: {
+      name: "Jason Born",
+      username: "jasonborn",
+      email: "jason.bourne@example.com",
+      comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+    },
+  },
+  //   securityDefinitions: { // This is not implemented yet
+  //     OAuth2: {
+  //       type: "oauth2",
+  //       flow: "authorizationCode",
+  //       authorizationUrl: "/login",
+  //       scopes: { user: "Access user data" },
+  //     },
+  //   },
+  //   security: [
+  //     {
+  //       OAuth2: ["user"],
+  //     },
+  //   ],
 };
 
 const outputFile = "./swagger-output.json";
