@@ -384,6 +384,10 @@
     "Comment": {
       "type": "object",
       "properties": {
+        "_id": {
+          "type": "string",
+          "example": "67a15593581f535664c32de7"
+        },
         "name": {
           "type": "string",
           "example": "Jason Born"
@@ -405,6 +409,10 @@
     "Newsletter": {
       "type": "object",
       "properties": {
+        "_id": {
+          "type": "string",
+          "example": "67a15593581f535664c32de7"
+        },
         "name": {
           "type": "string",
           "example": "John Doe"
