@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const {newsletterValidationRules, validate} = require('../validation/validation-newsletters.js')
+const { newsletterValidationRules, validate } = require('../validation/validation-newsletters.js');
 const newsletterController = require("../controllers/newsletters")
 
 router.get("/", newsletterController.getAll);

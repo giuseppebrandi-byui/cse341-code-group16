@@ -1,7 +1,8 @@
 const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
+const createError = require('http-errors');
 
-const getAll = async (req, res) => {
+const getAll = async (req, res, next) => {
   /*
     #swagger.summary='Gets all the comments'
     #swagger.description='Gets all the comments'
@@ -13,15 +14,23 @@ const getAll = async (req, res) => {
     
     #swagger.responses[500] = {description: 'Internal Server Error'}
   */
-
-  const result = await mongodb.getDatabase().db().collection("comments").find();
-  result.toArray().then((comments) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(comments);
-  });
+  try {
+    const result = await mongodb.getDatabase().db().collection("comments").find();
+    result.toArray().then((comments) => {
+      if (comments.length === 0 || !comments) { 
+        next(createError(400, 'No comments found'));
+        return;
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(comments);
+    });
+  } catch (error) { 
+    next(createError(500, 'Internal Server Error'));
+    return;
+  }
 };
 
-const getSingle = async (req, res) => {
+const getSingle = async (req, res, next) => {
   /*
     #swagger.summary='Gets a single comment by id'
     #swagger.description='Gets a single comment by id'
@@ -33,15 +42,30 @@ const getSingle = async (req, res) => {
 
     #swagger.responses[500] = {description: 'Internal Server Error'}
   */
-  const commentId = ObjectId.createFromHexString(req.params.id);
-  const result = await mongodb.getDatabase().db().collection('comments').find({ _id: commentId });
+  
+  if (!(req.params.id && req.params.id.length === 24)) { 
+      next(createError(400, 'Please enter a valid id with a string of 24 hex characters.'));
+      return;
+  }
+
+  try {
+    const commentId = ObjectId.createFromHexString(req.params.id);
+    const result = await mongodb.getDatabase().db().collection('comments').find({ _id: commentId });
     result.toArray().then((comments) => {
+      if (comments.length === 0 || !comments) {
+        next(createError(400, 'No comment found with the entered id.'));
+        return;
+      }
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(comments[0]);
     });
+  } catch (error) { 
+    next(createError(500, 'Internal Server Error'));
+    return;
+  }
 };
 
-const createComment = async (req, res) => {
+const createComment = async (req, res, next) => {
   /*
     #swagger.summary='Creates a comment'
     #swagger.description='Creates a comment'
@@ -50,29 +74,35 @@ const createComment = async (req, res) => {
 
     #swagger.responses[500] = {description: 'Some error occurred while creating the comment.'}
   */
-  const comment = {
-    name: req.body.name,
-    username: req.body.username,
-    email: req.body.email,
-    comment: req.body.comment,
-  };
-  const response = await mongodb
-    .getDatabase()
-    .db()
-    .collection("comments")
-    .insertOne(comment);
-  if (response.acknowledged) {
-    res.status(204).send();
-  } else {
-    res
-      .status(500)
-      .json(
-        response.error || "Some error occurred while creating the comment."
-      );
+  
+  try {
+    const comment = {
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email,
+      comment: req.body.comment,
+    };
+    const response = await mongodb
+      .getDatabase()
+      .db()
+      .collection("comments")
+      .insertOne(comment);
+    if (response.acknowledged) {
+      res.status(201).json({
+        'message': 'A new comment has been added to the database',
+        'added comment': comment,
+      });
+    } else {
+      next(createError(400, 'Some error occurred while creating the new comment.'));
+      return;
+    }
+  } catch (error) { 
+    next(createError(500, 'Internal Server Error.' + error.toString()));
+    return;
   }
 };
 
-const updateComment = async (req, res) => {
+const updateComment = async (req, res, next) => {
   /*
     #swagger.summary='Updates a comment'
     #swagger.description='Updates a comment'
@@ -82,8 +112,11 @@ const updateComment = async (req, res) => {
     #swagger.responses[500] = {description: 'Some error ocurred while updating the comment.'}
   */
   try {
+    if (!(req.params.id && req.params.id.length === 24)) {
+      next(createError(400, 'Please enter a valid id with a string of 24 hex characters.'));
+      return;
+    }
     const commentId = ObjectId.createFromHexString(req.params.id);
-
     const data = {
       name: req.body.name,
       username: req.body.username,
@@ -97,23 +130,22 @@ const updateComment = async (req, res) => {
       .collection("comments")
       .replaceOne({ _id: commentId }, data);
 
-    if (!response.acknowledged || response.modifiedCount === 0) {
-      return res
-        .status(500)
-        .json("Some error ocurred while updating the comment.");
+    if (response.modifiedCount > 0) {
+      res.status(201).json({
+        'message: ': 'Comment has been updated successfully',
+        'updated comment: ': data
+      })
+    } else { 
+      next(createError(400, 'No comment with that id'));
+      return
     }
   } catch (error) {
-    console.error(error);
-
-    return res
-      .status(500)
-      .json("Some error ocurred while updating the comment.");
+    next(createError(500, 'Something went wrong while updating the comment. Please check id.'))
+    return;
   }
-
-  res.status(204).send();
 };
 
-const deleteComment = async (req, res) => {
+const deleteComment = async (req, res, next) => {
   /*
     #swagger.summary='Deletes a comment'
     #swagger.description='Deletes a comment'
@@ -122,20 +154,29 @@ const deleteComment = async (req, res) => {
 
     #swagger.responses[500] = {description: 'Some error occurred while deleting the comment.'}
   */
-  const commentId = ObjectId.createFromHexString(req.params.id);
-  const response = await mongodb
-    .getDatabase()
-    .db()
-    .collection("comments")
-    .deleteOne({ _id: commentId });
-  if (response.deletedCount > 0) {
-    res.status(204).send();
-  } else {
-    res
-      .status(500)
-      .json(
-        response.error || "Some error occurred while deleting the comment."
-      );
+  
+  try {
+    if (!(req.params.id && req.params.id.length === 24)) {
+      next(createError(400, 'Please enter a valid id with a string of 24 hex characters.'));
+      return;
+    }
+    const commentId = ObjectId.createFromHexString(req.params.id);
+    const response = await mongodb
+      .getDatabase()
+      .db()
+      .collection("comments")
+      .deleteOne({ _id: commentId }, true);
+    if (response.deletedCount > 0) {
+      res.status(201).json({
+        'message: ': 'The comment has been deleted successfully.',
+      });
+    } else {
+        next(createError(400, 'Sorry no comment with entered id.'));
+        return;
+    }
+  } catch (error) { 
+    next(createError(500, 'Some error occurred while deleting the comment.'));
+    return;
   }
 };
 
