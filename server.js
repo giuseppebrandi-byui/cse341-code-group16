@@ -18,3 +18,15 @@ mongodb.initDb((err) => {
   }
 });
 
+app.use(function (error, req, res, next) {
+  if (res.headersSent) {
+    return next(error)
+  } else {
+    res.status(error.status || HttpStatus.INTERNAL_SERVER_ERROR);
+    res.send({
+      error
+    });
+  }
+
+});
+

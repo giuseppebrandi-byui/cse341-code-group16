@@ -1,0 +1,32 @@
+// LOCALHOST
+### Get all newsletters
+GET http://localhost:3000/newsletters
+
+
+### Get newsletter by id
+GET http://localhost:3000/newsletters/67a4914652898a74777b4991
+
+
+### Create newsletter
+POST http://localhost:3000/newsletters HTTP/1.1
+content-type: application/json
+
+{
+  "name":"Veronica",
+  "email":"veronica.brandi@gmail.com"
+}
+
+
+### PUT newsletter
+PUT http://localhost:3000/newsletters/67a4a1cc7c293eaa2479f757 HTTP/1.1
+content-type: application/json
+
+{
+  "name":"Vera Brandi",
+  "email":"vera.brandi@gmail.com"
+}
+
+
+### DELETE newsletter
+DELETE http://localhost:3000/newsletters/67a4a1cc7c293eaa2479f757 HTTP/1.1
+
