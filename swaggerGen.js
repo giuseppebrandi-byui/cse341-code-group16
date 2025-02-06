@@ -15,6 +15,10 @@ const doc = {
       email: "jason.bourne@example.com",
       comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
     },
+    Newsletter: {
+      name: "John Doe",
+      email: "john.doe@example.com",
+    },
   },
   //   securityDefinitions: { // This is not implemented yet
   //     OAuth2: {
