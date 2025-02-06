@@ -5,10 +5,10 @@
     "description": "An API to manage medicine practicioners, patients, newsletters and comments",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-code-group16.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
