@@ -4,7 +4,7 @@ GET http://localhost:3000/newsletters
 
 
 ### Get newsletter by id
-GET http://localhost:3000/newsletters/679e81faa04d19f37756ea87
+GET http://localhost:3000/newsletters/67a4914652898a74777b4991
 
 
 ### Create newsletter
@@ -12,13 +12,13 @@ POST http://localhost:3000/newsletters HTTP/1.1
 content-type: application/json
 
 {
-  "name":"Veronica Brandi",
+  "name":"Veronica",
   "email":"veronica.brandi@gmail.com"
 }
 
 
 ### PUT newsletter
-PUT http://localhost:3000/newsletters/67a4914652898a74777b4991 HTTP/1.1
+PUT http://localhost:3000/newsletters/67a4a1cc7c293eaa2479f757 HTTP/1.1
 content-type: application/json
 
 {
@@ -28,5 +28,5 @@ content-type: application/json
 
 
 ### DELETE newsletter
-DELETE http://localhost:3000/newsletters/67a4914652898a74777b4991 HTTP/1.1
+DELETE http://localhost:3000/newsletters/67a4a1cc7c293eaa2479f757 HTTP/1.1
 
