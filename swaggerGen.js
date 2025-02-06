@@ -10,12 +10,14 @@ const doc = {
   schemes: ["https"],
   definitions: {
     Comment: {
+      _id: "67a15593581f535664c32de7",
       name: "Jason Born",
       username: "jasonborn",
       email: "jason.bourne@example.com",
       comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
     },
     Newsletter: {
+      _id: "67a15593581f535664c32de7",
       name: "John Doe",
       email: "john.doe@example.com",
     },
