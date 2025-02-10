@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-router.get('/', (req, res) => { res.send('Hello World') });
+// router.get('/', (req, res) => { res.send('Hello World') });
 
 router.use('/patients', require('./patients') /*#swagger.tags=['Patients']*/ );
 router.use("/newsletters", require("./newsletters") /*#swagger.tags=['Newsletters']*/ )
