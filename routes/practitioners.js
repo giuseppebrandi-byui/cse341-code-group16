@@ -1,7 +1,6 @@
 const express = require('express');
-const router =express.Router();
-const {practitionerValidationRules, validate} = require('../validation/validation-practitioners');
-
+const router = express.Router();
+const { practitionerValidationRules, validate } = require('../validation/validation-practitioners.js');
 const practitionersController = require('../controllers/practitioners');
 
 router.get('/', practitionersController.getAll);
