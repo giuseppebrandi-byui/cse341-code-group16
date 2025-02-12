@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { patientValidationRules, validate } = require('../validation/validation-patients.js');
 const patientsController = require('../controllers/patients');
 
 router.get('/', patientsController.getAll);

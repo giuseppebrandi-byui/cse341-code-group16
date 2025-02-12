@@ -1,5 +1,6 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
+const createError = require('http-errors');
 
 const getAll = async (req, res) => { 
   const result = await mongodb.getDatabase().db().collection('patients').find();
@@ -33,9 +34,11 @@ const createPatient = async (req, res, next) => {
       name: req.body.name,
       dob: req.body.dob,
       email: req.body.email,
-      address: req.body.street,
-      address: req.body.city,
-      address: req.body.zip,
+      address: {
+        street: req.body.address.street,
+        city: req.body.address.city,
+        zip: req.body.address.zip
+      },
       phone: req.body.phone,
       insurer: req.body.insurer,
       request: req.body.request,
@@ -79,9 +82,11 @@ const updatePatient = async (req, res, next) => {
       name: req.body.name,
       dob: req.body.dob,
       email: req.body.email,
-      address: req.body.street,
-      address: req.body.city,
-      address: req.body.zip,
+      address: {
+        street: req.body.address.street,
+        city: req.body.address.city,
+        zip: req.body.address.zip
+      },
       phone: req.body.phone,
       insurer: req.body.insurer,
       request: req.body.request,
