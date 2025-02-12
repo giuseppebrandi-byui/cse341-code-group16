@@ -132,7 +132,7 @@ const updateComment = async (req, res, next) => {
 
     if (response.modifiedCount > 0) {
       res.status(201).json({
-        'message: ': 'Comment has been updated successfully',
+        'message': 'Comment has been updated successfully',
         'updated comment: ': data
       })
     } else { 
@@ -168,7 +168,7 @@ const deleteComment = async (req, res, next) => {
       .deleteOne({ _id: commentId }, true);
     if (response.deletedCount > 0) {
       res.status(201).json({
-        'message: ': 'The comment has been deleted successfully.',
+        'message': 'The comment has been deleted successfully.',
       });
     } else {
         next(createError(400, 'Sorry no comment with entered id.'));

@@ -26,7 +26,7 @@ const getAll = async(req, res, next) => {
     try{
         const result = await mongodb.getDatabase().db().collection('practitioners').find();
         result.toArray().then((practitioners) => {
-            if(practitioners.lenght === 0 || !practitioners) {
+            if(practitioners.length === 0 || !practitioners) {
                 next(createError(400, 'No practitioners found.'));
                 return;
             }
@@ -40,7 +40,7 @@ const getAll = async(req, res, next) => {
 };
 
 const getSingle = async(req, res, next) => {
-    if(!(req.params.id && req.params.id.lenght === 0)) {
+    if(!(req.params.id && req.params.id.length === 24)) {
         next(createError(400, 'Please enter a valid id with a string of 24 hex characters.'));
         return;
     }
@@ -48,7 +48,7 @@ const getSingle = async(req, res, next) => {
         const practitionerId = ObjectId.createFromHexString(req.params.id);
         const result = await mongodb.getDatabase().db().collection('practitioners').find({_id: practitionerId});
         result.toArray().then((practitioner) => {
-            if(practitioner.lenght === 0 || !practitioner) {
+            if(practitioner.length === 0 || !practitioner) {
                 next(createError(400, 'No practiotioner found with entered ID'));
                 return;
             }
@@ -137,7 +137,7 @@ const updatePractitioner = async (req, res, next) => {
       .replaceOne({ _id: practitionerId }, data);
     if (response.modifiedCount > 0) {
       res.status(201).json({
-        'message: ': 'The practitioner record has been updated successfully',
+        'message': 'The practitioner record has been updated successfully',
         'updated practitioner record: ': data
       });
     } else {
@@ -169,7 +169,7 @@ const deletePractitioner = async (req, res, next) => {
     const response = await mongodb.getDatabase().db().collection('practitioners').deleteOne({_id : practitionerId}, true);
     if (response.deletedCount > 0) {
       res.status(201).json({
-        'message: ': 'The practitioner record has been deleted successfully.',
+        'message': 'The practitioner record has been deleted successfully.',
       });
     } else {
         next(createError(400, 'Sorry no practitioner record found with entered id.'));

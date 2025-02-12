@@ -97,7 +97,7 @@ const updatePatient = async (req, res, next) => {
       .replaceOne({ _id: patientId }, data);
     if (response.modifiedCount > 0) {
       res.status(201).json({
-        'message: ': 'The patient record has been updated successfully',
+        'message': 'The patient record has been updated successfully',
         'updated patient record: ': data
       });
     } else {
@@ -129,7 +129,7 @@ const deletePatient = async (req, res, next) => {
     const response = await mongodb.getDatabase().db().collection('patients').deleteOne({_id : patientId}, true);
     if (response.deletedCount > 0) {
       res.status(201).json({
-        'message: ': 'The patient record has been deleted successfully.',
+        'message': 'The patient record has been deleted successfully.',
       });
     } else {
         next(createError(400, 'Sorry no patient record found with entered id.'));

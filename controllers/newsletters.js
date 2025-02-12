@@ -126,7 +126,7 @@ const updateNewsLetter = async (req, res, next) => {
       .replaceOne({ _id: newsletterId }, data);
     if (response.modifiedCount > 0) {
       res.status(201).json({
-        'message: ': 'Newsletter subscriber has been updated successfully',
+        'message': 'Newsletter subscriber has been updated successfully',
         'updated newsletter subscriber: ': data
       });
     } else {
@@ -159,7 +159,7 @@ const deleteNewsLetter = async (req, res, next) => {
     const response = await mongodb.getDatabase().db().collection('newsletters').deleteOne({_id : newsletterId}, true);
     if (response.deletedCount > 0) {
       res.status(201).json({
-        'message: ': 'The newsletter subscriber has been deleted successfully.',
+        'message': 'The newsletter subscriber has been deleted successfully.',
       });
     } else {
         next(createError(400, 'Sorry no newsletter subscriber with entered id.'));

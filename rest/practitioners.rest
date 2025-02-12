@@ -3,7 +3,7 @@
 GET http://localhost:3000/practitioners
 
 ### GET practitioner by ID
-GET http://localhost:3000/practitioners/679e903aa04d19f37756eafc
+GET http://localhost:3000/practitioners/679e903aa04d19f37756eafa
 
 ### CREATE new practitioner
 POST http://localhost:3000/practitioners HTTP/1.1
@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ### PUT practitioner
-PUT http://localhost:3000/practitioners/67abcc9cbce95da651563553 HTTP/1.1
+PUT http://localhost:3000/practitioners/67acf7f1e8700f93f480a20b HTTP/1.1
 Content-Type: application/json 
 
 {
@@ -40,5 +40,5 @@ Content-Type: application/json
 }
 
 ### DELETE practitioner
-DELETE http://localhost:3000/practitioners/67abcc9cbce95da651563553 HTTP/1.1
+DELETE http://localhost:3000/practitioners/67acf7f1e8700f93f480a20b HTTP/1.1
 Content-Type: application/json
