@@ -1,0 +1,46 @@
+## LOCALHOST
+### GET all patients
+GET http://localhost:3000/patients
+
+### GET patient by ID
+GET http://localhost:3000/patients/679e801fa04d19f37756ea79
+
+### CREATE new patient
+POST http://localhost:3000/patients HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Charlie Brown",
+    "dob": "12/22/85",
+    "email": "charlie.brown@example.com",
+    "address":{ 
+      "street":"41 East Avenue",
+      "city":"New York",
+      "zip":"10003"
+    },
+  "phone":"242-333-5445",
+    "insurer": "Aviva",
+    "request": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+}
+
+### PUT patient
+PUT http://localhost:3000/patients/67abbe3cd14d5b172447d5e2 HTTP/1.1
+Content-Type: application/json 
+
+{
+    "name": "Charlie Brown",
+    "dob": "12/22/85",
+    "email": "charlie.brown@example.com",
+    "address":{ 
+      "street":"41 East Avenue",
+      "city":"New York",
+      "zip":"10003"
+    },
+  "phone":"242-333-9999",
+    "insurer": "Aviva",
+    "request": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+}
+
+### DELETE patient
+DELETE http://localhost:3000/patients/67abb8034663fa1b10643b30 HTTP/1.1
+Content-Type: application/json

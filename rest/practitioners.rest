@@ -1,0 +1,44 @@
+## LOCALHOST
+### GET all practitioners
+GET http://localhost:3000/practitioners
+
+### GET practitioner by ID
+GET http://localhost:3000/practitioners/679e903aa04d19f37756eafc
+
+### CREATE new practitioner
+POST http://localhost:3000/practitioners HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Charlie Brown",
+  "specialization": "Radiology",
+  "dea_number": "CP2756344",
+  "address":{ 
+    "street":"41 East Avenue",
+    "city":"New York",
+    "zip":"10003"
+  },
+  "phone":"242-333-5445",
+  "email": "dr.charlie.brown@nycclinic.com"  
+}
+
+### PUT practitioner
+PUT http://localhost:3000/practitioners/67abcc9cbce95da651563553 HTTP/1.1
+Content-Type: application/json 
+
+{
+  "name": "Charlie Brown",
+  "specialization": "Radiology",
+  "dea_number": "CP2756344",
+  "address":{ 
+    "street":"45 East Avenue",
+    "city":"New York",
+    "zip":"10003"
+  },
+  "phone":"242-333-9999",
+  "email": "dr.charlie.brown@nycclinic.com"  
+}
+
+### DELETE practitioner
+DELETE http://localhost:3000/practitioners/67abcc9cbce95da651563553 HTTP/1.1
+Content-Type: application/json
