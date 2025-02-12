@@ -21,6 +21,28 @@ const doc = {
       name: "John Doe",
       email: "john.doe@example.com",
     },
+    Patient: {
+      _id: "67a15593581f535664c32de7",
+      name: "John Doe",
+      dob: "02/22/95",
+      email: "john.doe@example.com",
+      address: {
+        street: "123 Main Street",
+        city: "Cityville",
+        zip: "12345",
+      },
+    },
+    Practicioner: {
+      _id: "67a15593581f535664c32de7",
+      name: "Jeff Morrell",
+      specialization: "Allergy & Immunology",
+      dea_number: "C91234563",
+      address: {
+        street: "256 Beverly Street",
+        city: "Cityville",
+        zip: "12345",
+      },
+    },
   },
   //   securityDefinitions: { // This is not implemented yet
   //     OAuth2: {

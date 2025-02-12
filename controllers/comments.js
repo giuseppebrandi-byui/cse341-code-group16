@@ -7,6 +7,8 @@ const getAll = async (req, res, next) => {
     #swagger.summary='Gets all the comments'
     #swagger.description='Gets all the comments'
     
+    #swagger.responses[400] = {description: 'No comments found'}
+
     #swagger.responses[200] = {
        description: 'OK',
        schema: [{ $ref: '#/definitions/Comment' }]
@@ -35,6 +37,8 @@ const getSingle = async (req, res, next) => {
     #swagger.summary='Gets a single comment by id'
     #swagger.description='Gets a single comment by id'
     
+    #swagger.responses[400] = {description: 'Invalid record ID or no comment found with the entered id.'}
+
     #swagger.responses[200] = {
        description: 'OK',
        schema: { $ref: '#/definitions/Comment' }
@@ -69,10 +73,13 @@ const createComment = async (req, res, next) => {
   /*
     #swagger.summary='Creates a comment'
     #swagger.description='Creates a comment'
-    
-    #swagger.responses[204] = {description: 'Created successfully'}
 
-    #swagger.responses[500] = {description: 'Some error occurred while creating the comment.'}
+    #swagger.security = [{OAuth2:["user"]}]
+    
+    #swagger.responses[201] = {description: 'Created successfully'}
+
+    #swagger.responses[400] = {description: 'Some error occurred while creating the comment.'}
+    #swagger.responses[500] = {description: 'Internal Server Error.'}
   */
   
   try {
@@ -106,10 +113,14 @@ const updateComment = async (req, res, next) => {
   /*
     #swagger.summary='Updates a comment'
     #swagger.description='Updates a comment'
-    
-    #swagger.responses[204] = {description: 'Updated successfully'}
 
-    #swagger.responses[500] = {description: 'Some error ocurred while updating the comment.'}
+    #swagger.security = [{OAuth2:["user"]}]
+    
+    #swagger.responses[400] = {description: 'Invalid record ID or no comment with that id'}
+    
+    #swagger.responses[201] = {description: 'UpdatedComment has been updated successfully'}
+
+    #swagger.responses[500] = {description: 'Something went wrong while updating the comment. Please check id.'}
   */
   try {
     if (!(req.params.id && req.params.id.length === 24)) {
@@ -149,8 +160,12 @@ const deleteComment = async (req, res, next) => {
   /*
     #swagger.summary='Deletes a comment'
     #swagger.description='Deletes a comment'
+
+    #swagger.security = [{OAuth2:["user"]}]
     
-    #swagger.responses[204] = {description: 'Deleted successfully'}
+    #swagger.responses[400] = {description: 'Invalid record ID or no comment with that id'}
+
+    #swagger.responses[201] = {description: 'Deleted successfully'}
 
     #swagger.responses[500] = {description: 'Some error occurred while deleting the comment.'}
   */
