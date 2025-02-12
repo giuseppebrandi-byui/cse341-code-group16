@@ -67,7 +67,6 @@ const getSingle = async (req, res, next) => {
 };
 
 const createPatient = async (req, res, next) => {
-  
     /*
         #swagger.summary='Creates a patient'
         #swagger.description='Creates a patient'
@@ -108,7 +107,6 @@ const createPatient = async (req, res, next) => {
 };
 
 const updatePatient = async (req, res, next) => {
-
   /*
     #swagger.summary='Updates a patient record'
     #swagger.description='Updates a patient record'

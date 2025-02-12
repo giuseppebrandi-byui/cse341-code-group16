@@ -5,10 +5,10 @@
     "description": "An API to manage medicine practicioners, patients, newsletters and comments",
     "version": "1.0.0"
   },
-  "host": "cse341-code-group16.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/": {
@@ -21,18 +21,120 @@
         }
       }
     },
-    "/patients/": {
+    "/github/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/login": {
       "get": {
         "tags": [
           "Patients"
         ],
         "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/patients/": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Gets all the patients",
+        "description": "Gets all the patients",
         "produces": [
           "application/json"
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Patient"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Creates a patient",
+        "description": "Creates a patient",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "dob": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "insurer": {
+                  "example": "any"
+                },
+                "request": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "Created patient successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Some error occurred while creating the patient record."
           }
         }
       }
@@ -42,7 +144,8 @@
         "tags": [
           "Patients"
         ],
-        "description": "",
+        "summary": "Gets a single patient by id",
+        "description": "Gets a single patient by id",
         "produces": [
           "application/json"
         ],
@@ -56,7 +159,327 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Patient"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Updates a patient record",
+        "description": "Updates a patient record",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "dob": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "insurer": {
+                  "example": "any"
+                },
+                "request": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "Updated patient record successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Some error ocurred while updating the patient record."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Deletes a patient record",
+        "description": "Deletes a patient record",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "Patient record deleted successfully"
+          },
+          "500": {
+            "description": "Some error occurred while deleting the patient record."
+          }
+        }
+      }
+    },
+    "/practitioners/": {
+      "get": {
+        "tags": [
+          "Practitioners"
+        ],
+        "summary": "Gets all the practitioners",
+        "description": "Gets all the practitioners",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Practitioner"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Practitioners"
+        ],
+        "summary": "Creates a practitioner",
+        "description": "Creates a practitioner",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "specialization": {
+                  "example": "any"
+                },
+                "dea_number": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "Created practitioner successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Some error occurred while creating the practitioner record."
+          }
+        }
+      }
+    },
+    "/practitioners/{id}": {
+      "get": {
+        "tags": [
+          "Practitioners"
+        ],
+        "summary": "Gets a single practitioner by id",
+        "description": "Gets a single practitioner by id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Practitioner"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Practitioners"
+        ],
+        "summary": "Updates a practitioner record",
+        "description": "Updates a practitioner record",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "specialization": {
+                  "example": "any"
+                },
+                "dea_number": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "Updated practitioner record successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Some error ocurred while updating the practitioner record."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Practitioners"
+        ],
+        "summary": "Deletes a practitioner record",
+        "description": "Deletes a practitioner record",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "204": {
+            "description": "Practitioner record deleted successfully"
+          },
+          "500": {
+            "description": "Some error occurred while deleting the practitioner record."
+          }
+        }
+      }
+    },
+    "/practitioners/zip/{zip}": {
+      "get": {
+        "tags": [
+          "Practitioners"
+        ],
+        "summary": "Gets all the practitioners by Zip",
+        "description": "Gets all the practitioners by Zip",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "zip",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Practitioner"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -66,8 +489,8 @@
         "tags": [
           "Newsletters"
         ],
-        "summary": "Gets all the newsletters",
-        "description": "Gets all the newsletters",
+        "summary": "Gets all the newsletters subscribers",
+        "description": "Gets all the newsletters subscribers",
         "produces": [
           "application/json"
         ],
@@ -93,8 +516,8 @@
         "tags": [
           "Newsletters"
         ],
-        "summary": "Creates a newsletter",
-        "description": "Creates a newsletter",
+        "summary": "Creates a newsletter subscriber",
+        "description": "Creates a newsletter subscriber",
         "parameters": [
           {
             "name": "body",
@@ -113,11 +536,20 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "204": {
-            "description": "Created successfully"
+            "description": "Created newsletter subscriber successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
-            "description": "Some error occurred while updating the newsletter."
+            "description": "Some error occurred while updating the newsletter subscriber."
           }
         }
       }
@@ -128,7 +560,7 @@
           "Newsletters"
         ],
         "summary": "Gets a single newsletter by id",
-        "description": "Gets a single newsletter by id",
+        "description": "Gets a single newsletter subscriber by id",
         "produces": [
           "application/json"
         ],
@@ -157,7 +589,7 @@
           "Newsletters"
         ],
         "summary": "Updates a newsletter",
-        "description": "Updates a newsletter",
+        "description": "Updates a newsletter subscriber",
         "parameters": [
           {
             "name": "id",
@@ -182,11 +614,20 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "204": {
-            "description": "Updated successfully"
+            "description": "Updated newsletter subscriber successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
-            "description": "Some error ocurred while updating the newsletter."
+            "description": "Some error ocurred while updating the newsletter subscriber."
           }
         }
       },
@@ -194,8 +635,8 @@
         "tags": [
           "Newsletters"
         ],
-        "summary": "Deletes a newsletter",
-        "description": "Deletes a newsletter",
+        "summary": "Deletes a newsletter subscriber",
+        "description": "Deletes a newsletter subscriber",
         "parameters": [
           {
             "name": "id",
@@ -205,11 +646,17 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "204": {
-            "description": "Deleted successfully"
+            "description": "Subscriber Deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
-            "description": "Some error occurred while deleting the newsletter."
+            "description": "Some error occurred while deleting the newsletter subscriber."
           }
         }
       }
@@ -272,8 +719,17 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "204": {
             "description": "Created successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Some error occurred while creating the comment."
@@ -347,8 +803,17 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "204": {
             "description": "Updated successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Some error ocurred while updating the comment."
@@ -370,11 +835,33 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "204": {
             "description": "Deleted successfully"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Some error occurred while deleting the comment."
+          }
+        }
+      }
+    },
+    "/zips/": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
