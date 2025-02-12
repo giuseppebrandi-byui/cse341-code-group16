@@ -9,9 +9,7 @@ Summary of what the PR is for.
 •⁠  ⁠and here
 
 ### Checklist
-
-•⁠  ⁠Ensure your branch name matches one of the patterns that will trigger the CI checks (⁠ feature/** ⁠)
 •⁠  ⁠[ ] Brief *description* of work completed, and any technical decisions made as part of the PR
 •⁠  ⁠[ ] *Reviewers* have been assigned 
-•⁠  ⁠[ ] PR link *shared* on Slack and Teams
+•⁠  ⁠[ ] PR link *shared* on Teams
 •⁠  ⁠[ ] 2 reviews *received*
