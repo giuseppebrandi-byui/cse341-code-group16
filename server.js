@@ -55,10 +55,14 @@ passport.deserializeUser((user, done) => {
 });
 
 app.get('/', (req, res) => {
+  /*
+    #swagger.summary='Gets a string with the logged in status'
+    #swagger.description='Gets a string with the logged in status'
+  */
   res.send(req.session.user !== undefined ? `Logged in as ${req.session.user.displayName??req.session.user.username}` : 'Logged Out')
 });
 
-app.get('/github/callback', passport.authenticate('github', {
+app.get('/github/callback', /* #swagger.tags=['OAuth'] #swagger.summary='Gets a string with the logged in status' #swagger.description='Gets a string with the logged in status' */ passport.authenticate('github', {
   failureRedirect: '/api-docs', session: false
 }),
   (req, res) => {
@@ -80,7 +84,7 @@ app.use(function (error, req, res, next) {
   if (res.headersSent) {
     return next(error)
   } else {
-    res.status(error.status || HttpStatus.INTERNAL_SERVER_ERROR);
+    res.status(error.status || 500);
     res.send({
       error
     });

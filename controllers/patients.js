@@ -7,6 +7,8 @@ const getAll = async (req, res, next) => {
     #swagger.summary='Gets all the patients'
     #swagger.description='Gets all the patients'
     
+    #swagger.responses[400] = {description: 'No patients found'}
+
     #swagger.responses[200] = {
        description: 'OK',
        schema: [{ $ref: '#/definitions/Patient' }]
@@ -36,6 +38,8 @@ const getSingle = async (req, res, next) => {
     #swagger.summary='Gets a single patient by id'
     #swagger.description='Gets a single patient by id'
     
+    #swagger.responses[400] = {description: 'Invalid record ID or no patient found with the entered id.'}
+
     #swagger.responses[200] = {
        description: 'OK',
        schema: { $ref: '#/definitions/Patient' }
@@ -70,10 +74,14 @@ const createPatient = async (req, res, next) => {
     /*
         #swagger.summary='Creates a patient'
         #swagger.description='Creates a patient'
-        
-        #swagger.responses[204] = {description: 'Created patient successfully'}
 
-        #swagger.responses[500] = {description: 'Some error occurred while creating the patient record.'}
+        #swagger.security = [{OAuth2:["user"]}]
+        
+        #swagger.responses[400] = {description: 'Some error occurred while creating the patient record.'}
+
+        #swagger.responses[201] = {description: 'A new patient has been added to the database'}
+
+        #swagger.responses[500] = {description: 'Internal Server Error'}
      */
 
   try {
@@ -110,10 +118,14 @@ const updatePatient = async (req, res, next) => {
   /*
     #swagger.summary='Updates a patient record'
     #swagger.description='Updates a patient record'
-     
-    #swagger.responses[204] = {description: 'Updated patient record successfully'}
 
-    #swagger.responses[500] = {description: 'Some error ocurred while updating the patient record.'}
+    #swagger.security = [{OAuth2:["user"]}]
+
+    #swagger.responses[400] = {description: 'Invalid record ID or no patient record found with that id.'}
+
+    #swagger.responses[201] = {description: 'The patient record has been updated successfully'}
+
+    #swagger.responses[500] = {description: 'Something went wrong while updating the patient record. Please check id.'}
   */
   
   try {
@@ -159,8 +171,12 @@ const deletePatient = async (req, res, next) => {
     /*
       #swagger.summary='Deletes a patient record'
       #swagger.description='Deletes a patient record'
+
+      #swagger.security = [{OAuth2:["user"]}]
+
+      #swagger.responses[400] = {description: 'Invalid record ID or no patient record found with that id.'}
         
-      #swagger.responses[204] = {description: 'Patient record deleted successfully'}
+      #swagger.responses[201] = {description: 'The patient record has been deleted successfully.'}
 
       #swagger.responses[500] = {description: 'Some error occurred while deleting the patient record.'}
     */
