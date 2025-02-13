@@ -90,7 +90,7 @@ const createNewsLetter = async (req, res, next) => {
       });
     } else {
       next(createError(400, 'Some error occurred while creating the newsletter subscriber.'));
-      return;;
+      return;
     }
   } catch (error) { 
     next(createError(500, 'Internal Server Error'));
