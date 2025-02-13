@@ -33,12 +33,11 @@ const getAll = async (req, res, next) => {
 };
 
 const getSingle = async (req, res, next) => { 
-
   /*
     #swagger.summary='Gets a single newsletter by id'
     #swagger.description='Gets a single newsletter subscriber by id'
     
-    #swagger.responses[400] = {description: 'Invalid record ID or no newsletter subscriber with that id'}
+    #swagger.responses[400] = {description: 'Invalid record ID or no newsletter subscriber found with entered id.'}
 
     #swagger.responses[200] = {
        description: 'OK',
@@ -78,7 +77,7 @@ const createNewsLetter = async (req, res, next) => {
 
         #swagger.security = [{OAuth2:["user"]}]
         
-        #swagger.responses[201] = {description: 'Created newsletter subscriber successfully'}
+        #swagger.responses[201] = {description: 'A newsletter subscriber has been added to the database'}
 
         #swagger.responses[400] = {description: 'Some error occurred while creating the newsletter subscriber.'}
 
@@ -116,9 +115,9 @@ const updateNewsLetter = async (req, res, next) => {
      
     #swagger.responses[400] = {description: 'Invalid record ID or no newsletter subscriber with that id'}
 
-    #swagger.responses[201] = {description: 'Updated newsletter subscriber successfully'}
+    #swagger.responses[201] = {description: 'Newsletter subscriber has been updated successfully'}
 
-    #swagger.responses[500] = {description: 'Some error ocurred while updating the newsletter subscriber.'}
+    #swagger.responses[500] = {description: 'Something went wrong while updating the newsletter subscriber. Please check id.'}
   */
   
   try {
@@ -159,9 +158,9 @@ const deleteNewsLetter = async (req, res, next) => {
 
       #swagger.security = [{OAuth2:["user"]}]
         
-      #swagger.responses[400] = {description: 'Invalid record ID or no newsletter subscriber with that id'}
+      #swagger.responses[400] = {description: 'Invalid record ID or no newsletter subscriber with entered id.'}
 
-      #swagger.responses[201] = {description: 'Subscriber Deleted successfully'}
+      #swagger.responses[201] = {description: 'The newsletter subscriber has been deleted successfully.'}
 
       #swagger.responses[500] = {description: 'Some error occurred while deleting the newsletter subscriber.'}
     */

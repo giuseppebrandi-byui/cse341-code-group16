@@ -76,7 +76,7 @@ const createComment = async (req, res, next) => {
 
     #swagger.security = [{OAuth2:["user"]}]
     
-    #swagger.responses[201] = {description: 'Created successfully'}
+    #swagger.responses[201] = {description: 'A new comment has been added to the database'}
 
     #swagger.responses[400] = {description: 'Some error occurred while creating the comment.'}
     #swagger.responses[500] = {description: 'Internal Server Error.'}
@@ -118,7 +118,7 @@ const updateComment = async (req, res, next) => {
     
     #swagger.responses[400] = {description: 'Invalid record ID or no comment with that id'}
     
-    #swagger.responses[201] = {description: 'UpdatedComment has been updated successfully'}
+    #swagger.responses[201] = {description: 'Comment has been updated successfully'}
 
     #swagger.responses[500] = {description: 'Something went wrong while updating the comment. Please check id.'}
   */
@@ -165,7 +165,7 @@ const deleteComment = async (req, res, next) => {
     
     #swagger.responses[400] = {description: 'Invalid record ID or no comment with that id'}
 
-    #swagger.responses[201] = {description: 'Deleted successfully'}
+    #swagger.responses[201] = {description: 'The comment has been deleted successfully.'}
 
     #swagger.responses[500] = {description: 'Some error occurred while deleting the comment.'}
   */
