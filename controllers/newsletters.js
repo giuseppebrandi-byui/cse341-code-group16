@@ -108,7 +108,7 @@ const createNewsLetter = async (req, res, next) => {
 const updateNewsLetter = async (req, res, next) => {
 
   /*
-    #swagger.summary='Updates a newsletter'
+    #swagger.summary='Updates a newsletter subscriber'
     #swagger.description='Updates a newsletter subscriber'
 
     #swagger.security = [{OAuth2:["user"]}]

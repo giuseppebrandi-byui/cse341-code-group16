@@ -41,7 +41,7 @@ const getAllZips = async (req, res, next) => {
 
     #swagger.responses[200] = {
        description: 'OK',
-       schema: [{"zips": [1234]}]
+       schema: {"zips": ["1234"]}
      } 
     
     #swagger.responses[500] = {description: 'Internal Server Error'}

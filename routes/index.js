@@ -10,9 +10,9 @@ router.use("/comments", require("./comments") /*#swagger.tags=['Comments']*/)
 router.use('/zips', require('./zips') /*#swagger.tags=['Zip Codes']*/);
 router.use("/api-docs", require("./apiDocs"));
 
-router.get('/login', passport.authenticate('github'), (req, res) => { });
+router.get('/login', /*#swagger.tags=['OAuth'] #swagger.summary='Log in route' #swagger.description='Log in route'*/ passport.authenticate('github'), (req, res) => { });
 
-router.get('/logout', function (req, res, next) {
+router.get('/logout', /**#swagger.tags=['OAuth'] #swagger.summary='Log out route' #swagger.description='Log out route'*/ function (req, res, next) {
   req.logout(function (err) {
     if (err) { return next(err); }
     res.redirect('/');
