@@ -68,9 +68,9 @@ const createPractitioner = async(req, res, next) => {
             specialization: req.body.specialization,
             dea_number: req.body.dea_number,
             address: {
-                street: req.body.street,
-                city: req.body.city,
-                zip: req.body.zip
+                street: req.body.address.street,
+                city: req.body.address.city,
+                zip: req.body.address.zip
             },
             phone: req.body.phone,
             email: req.body.email
@@ -103,9 +103,9 @@ const updatePractitioner = async(req, res, next) => {
             specialization: req.body.specialization,
             dea_number: req.body.dea_number,
             address: {
-                street: req.body.street,
-                city: req.body.city,
-                zip: req.body.zip
+                street: req.body.address.street,
+                city: req.body.address.city,
+                zip: req.body.address.zip
             },
             phone: req.body.phone,
             email: req.body.email
