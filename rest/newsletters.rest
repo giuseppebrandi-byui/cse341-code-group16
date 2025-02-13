@@ -4,7 +4,7 @@ GET http://localhost:3000/newsletters
 
 
 ### Get newsletter by id
-GET http://localhost:3000/newsletters/67a4914652898a74777b4991
+GET http://localhost:3000/newsletters/679e81faa04d19f37756ea87
 
 
 ### Create newsletter
@@ -12,7 +12,7 @@ POST http://localhost:3000/newsletters HTTP/1.1
 content-type: application/json
 
 {
-  "name":"Veronica",
+  "name":"Charlie Brown",
   "email":"veronica.brandi@gmail.com"
 }
 

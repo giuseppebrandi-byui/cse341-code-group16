@@ -3,6 +3,17 @@ const ObjectId = require('mongodb').ObjectId;
 const createError = require('http-errors');
 
 const getByZip = async (req, res) => { 
+  /*
+    #swagger.summary='Gets all the practitioners by Zip'
+    #swagger.description='Gets all the practitioners by Zip'
+    
+    #swagger.responses[200] = {
+       description: 'OK',
+       schema: [{ $ref: '#/definitions/Practitioner' }]
+     } 
+    
+    #swagger.responses[500] = {description: 'Internal Server Error'}
+  */
   const practitionerZip = req.params.zip;
   const result = await mongodb.getDatabase().db().collection('practitioners').find({'address.zip': practitionerZip });
   result.toArray().then((practitioners) => {
@@ -22,24 +33,49 @@ const getAllZips = async (req, res) => {
   });
 }
 
-const getAll = async(req, res, next) => {
+const getAll = async (req, res, next) => {
+  
+  /*
+    #swagger.summary='Gets all the practitioners'
+    #swagger.description='Gets all the practitioners'
+    
+    #swagger.responses[200] = {
+       description: 'OK',
+       schema: [{ $ref: '#/definitions/Practitioner' }]
+     } 
+    
+    #swagger.responses[500] = {description: 'Internal Server Error'}
+  */
+  
     try{
         const result = await mongodb.getDatabase().db().collection('practitioners').find();
         result.toArray().then((practitioners) => {
-            if(practitioners.length === 0 || !practitioners) {
-                next(createError(400, 'No practitioners found.'));
-                return;
-            }
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(practitioners);
+          if(practitioners.length === 0 || !practitioners) {
+            next(createError(400, 'No practitioners found.'));
+            return;
+          }
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).json(practitioners);
         });
     } catch (error) {
-        next(createError(500, 'Internal Server Error'));
-        return;
+      next(createError(500, 'Internal Server Error'));
+      return;
     }
 };
 
-const getSingle = async(req, res, next) => {
+const getSingle = async (req, res, next) => {
+  /*
+    #swagger.summary='Gets a single practitioner by id'
+    #swagger.description='Gets a single practitioner by id'
+    
+    #swagger.responses[200] = {
+       description: 'OK',
+       schema: { $ref: '#/definitions/Practitioner' }
+    } 
+
+    #swagger.responses[500] = {description: 'Internal Server Error'}
+  */
+  
     if(!(req.params.id && req.params.id.length === 24)) {
         next(createError(400, 'Please enter a valid id with a string of 24 hex characters.'));
         return;
@@ -47,17 +83,17 @@ const getSingle = async(req, res, next) => {
     try {
         const practitionerId = ObjectId.createFromHexString(req.params.id);
         const result = await mongodb.getDatabase().db().collection('practitioners').find({_id: practitionerId});
-        result.toArray().then((practitioner) => {
-            if(practitioner.length === 0 || !practitioner) {
-                next(createError(400, 'No practiotioner found with entered ID'));
+        result.toArray().then((practitioners) => {
+            if(practitioners.length === 0 || !practitioners) {
+                next(createError(400, 'No practitioner found with entered ID'));
                 return;
             }
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(practitioner);
+            res.status(200).json(practitioners[0]);
         })
     } catch (error) {
-        next(createError(500, 'Internal Server Error'));
-        return;
+      next(createError(500, 'Internal Server Error'));
+      return;
     }
 }
 

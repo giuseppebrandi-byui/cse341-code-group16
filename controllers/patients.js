@@ -2,25 +2,71 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 const createError = require('http-errors');
 
-const getAll = async (req, res) => { 
-  const result = await mongodb.getDatabase().db().collection('patients').find();
-  result.toArray().then((patients) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(patients);
-  });
+const getAll = async (req, res, next) => { 
+  /*
+    #swagger.summary='Gets all the patients'
+    #swagger.description='Gets all the patients'
+    
+    #swagger.responses[200] = {
+       description: 'OK',
+       schema: [{ $ref: '#/definitions/Patient' }]
+     } 
+    
+    #swagger.responses[500] = {description: 'Internal Server Error'}
+  */
+  try {
+    const result = await mongodb.getDatabase().db().collection('patients').find();
+    result.toArray().then((patients) => {
+      if (patients.length === 0 || !patients) { 
+        next(createError(400, 'No patients found'));
+        return;
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(patients);
+    });
+  } catch (error) { 
+    next(createError(500, 'Internal Server Error'));
+    return;
+  }
 };
 
-const getSingle = async (req, res) => { 
-  const patientId = ObjectId.createFromHexString(req.params.id);
-  const result = await mongodb.getDatabase().db().collection('patients').find({ _id: patientId });
+const getSingle = async (req, res, next) => {
+
+  /*
+    #swagger.summary='Gets a single patient by id'
+    #swagger.description='Gets a single patient by id'
+    
+    #swagger.responses[200] = {
+       description: 'OK',
+       schema: { $ref: '#/definitions/Patient' }
+    } 
+
+    #swagger.responses[500] = {description: 'Internal Server Error'}
+  */
+  
+  if (!(req.params.id && req.params.id.length === 24)) {
+    next(createError(400, 'Please enter a valid id with a string of 24 hex characters.'));
+    return;
+  }
+
+  try {
+    const patientId = ObjectId.createFromHexString(req.params.id);
+    const result = await mongodb.getDatabase().db().collection('patients').find({ _id: patientId });
     result.toArray().then((patients) => {
+      if (patients.length === 0 || !patients) {
+        next(createError(400, 'No patient found with the entered id.'));
+        return;
+      }
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(patients[0]);
     });
+  } catch (error) { 
+    next(createError(500, 'Internal Server Error'));
+    return;
+  }
 };
 
 const createPatient = async (req, res, next) => {
-  
     /*
         #swagger.summary='Creates a patient'
         #swagger.description='Creates a patient'
@@ -61,7 +107,6 @@ const createPatient = async (req, res, next) => {
 };
 
 const updatePatient = async (req, res, next) => {
-
   /*
     #swagger.summary='Updates a patient record'
     #swagger.description='Updates a patient record'
