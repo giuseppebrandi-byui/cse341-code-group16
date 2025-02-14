@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Newsletters API Tests - GET Endpoints GET /newsletters should get all newsletters and match snapshot 1`] = `
+[
+  {
+    "_id": "679e81faa04d19f37756ea87",
+    "email": "john.doe@example.com",
+    "name": "John Doe",
+  },
+  {
+    "_id": "679e81faa04d19f37756ea88",
+    "email": "michael.johnson@example.com",
+    "name": "Michael Johnson",
+  },
+]
+`;
+
+exports[`Newsletters API Tests - GET Endpoints GET /newsletters should return 400 when no newsletters exist 1`] = `
+{
+  "error": {
+    "message": "No newsletters subscriber found.",
+  },
+}
+`;
+
+exports[`Newsletters API Tests - GET Endpoints GET /newsletters/:id should get specific newsletter and match snapshot 1`] = `
+{
+  "_id": "679e81faa04d19f37756ea87",
+  "email": "john.doe@example.com",
+  "name": "John Doe",
+}
+`;
+
+exports[`Newsletters API Tests - GET Endpoints GET /newsletters/:id should return 400 for invalid id format 1`] = `
+{
+  "error": {
+    "message": "Please enter a valid id with a string of 24 hex characters.",
+  },
+}
+`;
+
+exports[`Newsletters API Tests - GET Endpoints GET /newsletters/:id should return 400 for non-existent id 1`] = `
+{
+  "error": {
+    "message": "No newsletter subscriber found with entered id.",
+  },
+}
+`;

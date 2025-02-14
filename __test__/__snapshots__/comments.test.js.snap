@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comments API Tests - GET Endpoints GET /comments should get all comments and match snapshot 1`] = `
+[
+  {
+    "_id": "679e85fca04d19f37756eab2",
+    "comment": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. ",
+    "email": "michael.reese@example.com",
+    "name": "Michael Reese",
+    "username": "mikeres",
+  },
+  {
+    "_id": "679e85fca04d19f37756eab3",
+    "comment": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+    "email": "emily.wilson@example.com",
+    "name": "Emily Wilson",
+    "username": "emyawesome",
+  },
+]
+`;
+
+exports[`Comments API Tests - GET Endpoints GET /comments should return 400 when no comments exist 1`] = `
+{
+  "error": {
+    "message": "No comments found",
+  },
+}
+`;
+
+exports[`Comments API Tests - GET Endpoints GET /comments/:id should get specific comment and match snapshot 1`] = `
+{
+  "_id": "679e85fca04d19f37756eab2",
+  "comment": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. ",
+  "email": "michael.reese@example.com",
+  "name": "Michael Reese",
+  "username": "mikeres",
+}
+`;
+
+exports[`Comments API Tests - GET Endpoints GET /comments/:id should return 400 for invalid id format 1`] = `
+{
+  "error": {
+    "message": "Please enter a valid id with a string of 24 hex characters.",
+  },
+}
+`;
+
+exports[`Comments API Tests - GET Endpoints GET /comments/:id should return 400 for non-existent id 1`] = `
+{
+  "error": {
+    "message": "No comment found with the entered id.",
+  },
+}
+`;
