@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Patients API Tests - GET Endpoints GET /patients should get all patients and match snapshot 1`] = `
+[
+  {
+    "_id": "679e801fa04d19f37756ea79",
+    "address": {
+      "city": "Villageland",
+      "street": "567 Maple Street",
+      "zip": "67890",
+    },
+    "dob": "09/18/79",
+    "email": "sophia.adams@example.com",
+    "insurer": "National",
+    "name": "Sofia Adams",
+    "phone": "555-789-2345",
+    "request": "Morbi posuere enim quis ornare laoreet. Donec imperdiet lacus odio, ut sollicitudin velit vulputate non. Sed mattis dolor purus, vel efficitur metus porta vel. Donec in aliquam nisl. Suspendisse venenatis eros molestie nunc eleifend, vel euismod elit tincidunt.",
+  },
+  {
+    "_id": "679e801fa04d19f37756ea72",
+    "address": {
+      "city": "Townsville",
+      "street": "456 Park Avenue",
+      "zip": "54321",
+    },
+    "dob": "03/10/00",
+    "email": "jane.smith@example.com",
+    "insurer": "The Exeter",
+    "name": "Jane Smith",
+    "phone": "555-987-6543",
+    "request": "Vestibulum dignissim sapien sit amet massa rhoncus posuere. Nunc volutpat ullamcorper magna, vel elementum purus malesuada sed. Phasellus condimentum enim magna, nec feugiat metus imperdiet eget. Ut ut risus laoreet velit sagittis pharetra in nec diam. Proin tincidunt ultrices euismod.",
+  },
+  {
+    "_id": "679e801fa04d19f37756ea75",
+    "address": {
+      "city": "Cityville",
+      "street": "789 Maple Avenue",
+      "zip": "12345",
+    },
+    "dob": "07/22/65",
+    "email": "michael.brown@example.com",
+    "insurer": "Aviva",
+    "name": "Michael Brown",
+    "phone": "555-234-5678",
+    "request": "Cras ligula mi, varius a lorem nec, cursus fringilla elit. Nulla eleifend luctus est et laoreet. Integer suscipit metus eu lectus fringilla, quis iaculis tellus faucibus. Integer lacinia, urna at efficitur auctor, odio ante vehicula tortor, eu lacinia odio neque vitae tellus. Donec eget auctor mauris. Pellentesque sed cursus neque, id dictum leo.",
+  },
+]
+`;
+
+exports[`Patients API Tests - GET Endpoints GET /patients should return 400 when no patients exist 1`] = `
+{
+  "error": {
+    "message": "No patients found",
+  },
+}
+`;
+
+exports[`Patients API Tests - GET Endpoints GET /patients/:id should get specific patient and match snapshot 1`] = `
+{
+  "_id": "679e801fa04d19f37756ea79",
+  "address": {
+    "city": "Villageland",
+    "street": "567 Maple Street",
+    "zip": "67890",
+  },
+  "dob": "09/18/79",
+  "email": "sophia.adams@example.com",
+  "insurer": "National",
+  "name": "Sofia Adams",
+  "phone": "555-789-2345",
+  "request": "Morbi posuere enim quis ornare laoreet. Donec imperdiet lacus odio, ut sollicitudin velit vulputate non. Sed mattis dolor purus, vel efficitur metus porta vel. Donec in aliquam nisl. Suspendisse venenatis eros molestie nunc eleifend, vel euismod elit tincidunt.",
+}
+`;
+
+exports[`Patients API Tests - GET Endpoints GET /patients/:id should return 400 for invalid id format 1`] = `
+{
+  "error": {
+    "message": "Please enter a valid id with a string of 24 hex characters.",
+  },
+}
+`;
+
+exports[`Patients API Tests - GET Endpoints GET /patients/:id should return 400 for non-existent id 1`] = `
+{
+  "error": {
+    "message": "No patient found with the entered id.",
+  },
+}
+`;

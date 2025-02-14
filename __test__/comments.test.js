@@ -1,3 +1,4 @@
+
 const { MongoClient } = require('mongodb');
 const request = require("supertest");
 const { app, initializeApp } = require("../server");
@@ -18,7 +19,7 @@ jest.mock('passport-github2', () => ({
 // Increase Jest's default timeout to allow for MongoDB Memory Server startup
 jest.setTimeout(30000);
 
-describe('Newsletters API Tests - GET Endpoints', () => {
+describe('Comments API Tests - GET Endpoints', () => {
   // Test suite-wide variables
   let connection;        // MongoDB connection instance
   let mongoServer;       // MongoDB Memory Server instance
@@ -26,9 +27,8 @@ describe('Newsletters API Tests - GET Endpoints', () => {
   let server;           // Express server instance
 
   // Create fixed ObjectIds for consistent test data and snapshots
-  // Using predictable IDs makes our snapshots deterministic
-  const testId1 = new ObjectId('679e81faa04d19f37756ea87');
-  const testId2 = new ObjectId('679e81faa04d19f37756ea88');
+  const testId1 = new ObjectId('679e85fca04d19f37756eab2');
+  const testId2 = new ObjectId('679e85fca04d19f37756eab3');
 
   /**
    * Before all tests:
@@ -90,74 +90,90 @@ describe('Newsletters API Tests - GET Endpoints', () => {
   /**
    * Before each test:
    * Reset the database to a known state with predictable test data
+   * This ensures each test starts with the same data state
    */
   beforeEach(async () => {
-    // Clear all existing data from the newsletters collection
-    await db.collection('newsletters').deleteMany({});
+    // Clear all existing data from the comments collection
+    await db.collection('comments').deleteMany({});
 
     // Insert test data with our fixed ObjectIds
-    await db.collection('newsletters').insertMany([
+    await db.collection('comments').insertMany([
       {
         "_id": testId1,
-        "name": "John Doe",
-        "email": "john.doe@example.com"
+        "name": "Michael Reese",
+        "username": "mikeres",
+        "email": "michael.reese@example.com",
+        "comment": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. "
       },
       {
-        _id: testId2,
-        name: "Michael Johnson",
-        email: "michael.johnson@example.com"
+        "_id": testId2,
+        "name": "Emily Wilson",
+        "username": "emyawesome",
+        "email": "emily.wilson@example.com",
+        "comment": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
       }
     ]);
   });
 
   /**
-   * GET /newsletters endpoint tests
-   * Tests retrieving the list of all newsletters
+   * GET /comments endpoint tests
+   * Tests retrieving the list of all comments
    */
-  describe('GET /newsletters', () => {
-    // Test successful retrieval of all newsletters
-    it("should get all newsletters and match snapshot", async () => {
-      const response = await request(app).get("/newsletters");
+  describe('GET /comments', () => {
+    // Test successful retrieval of all comments
+    it("should get all comments and match snapshot", async () => {
+      const response = await request(app).get("/comments");
 
       // Verify basic response structure
       expect(response.statusCode).toBe(200);
       expect(Array.isArray(response.body)).toBe(true);
       expect(response.body.length).toBe(2);
 
-      // Verify each newsletter has required fields
+      // Verify each comment has required fields
       expect(Object.keys(response.body[0])).toEqual(
-        expect.arrayContaining(['_id', 'name', 'email'])
+        expect.arrayContaining([
+          '_id',
+          'name',
+          'username',
+          'email',
+          'comment'
+        ])
       );
 
       // Verify response matches stored snapshot
-      // No need to mask _id since we're using consistent ObjectIds
       expect(response.body).toMatchSnapshot();
     });
 
-    // Test behavior when no newsletters exist
-    it("should return 400 when no newsletters exist", async () => {
-      // Remove all newsletters
-      await db.collection('newsletters').deleteMany({});
+    // Test behavior when no comments exist
+    it("should return 400 when no comments exist", async () => {
+      // Remove all comments
+      await db.collection('comments').deleteMany({});
 
-      const response = await request(app).get("/newsletters");
+      const response = await request(app).get("/comments");
       expect(response.statusCode).toBe(400);
       expect(response.body).toMatchSnapshot();
     });
   });
 
   /**
-   * GET /newsletters/:id endpoint tests
-   * Tests retrieving a single newsletter by ID
+   * GET /comments/:id endpoint tests
+   * Tests retrieving a single comment by ID
    */
-  describe('GET /newsletters/:id', () => {
-    // Test successful retrieval of a specific newsletter
-    it("should get specific newsletter and match snapshot", async () => {
+  describe('GET /comments/:id', () => {
+    // Test successful retrieval of a specific comment
+    it("should get specific comment and match snapshot", async () => {
       const response = await request(app)
-        .get(`/newsletters/${testId1.toString()}`);
+        .get(`/comments/${testId1.toString()}`);
 
       expect(response.statusCode).toBe(200);
       expect(Object.keys(response.body)).toEqual(
-        expect.arrayContaining(['_id', 'name', 'email'])
+        expect.arrayContaining([
+          '_id',
+          'name',
+          'username',
+          'email',
+          'comment'
+        ])
       );
 
       expect(response.body).toMatchSnapshot();
@@ -166,7 +182,7 @@ describe('Newsletters API Tests - GET Endpoints', () => {
     // Test behavior with invalid ID format
     it("should return 400 for invalid id format", async () => {
       const response = await request(app)
-        .get('/newsletters/invalid-id');
+        .get('/comments/invalid-id');
 
       expect(response.statusCode).toBe(400);
       expect(response.body).toMatchSnapshot();
@@ -176,7 +192,7 @@ describe('Newsletters API Tests - GET Endpoints', () => {
     it("should return 400 for non-existent id", async () => {
       const nonExistentId = new ObjectId('000000000000000000000099');
       const response = await request(app)
-        .get(`/newsletters/${nonExistentId.toString()}`);
+        .get(`/comments/${nonExistentId.toString()}`);
 
       expect(response.statusCode).toBe(400);
       expect(response.body).toMatchSnapshot();

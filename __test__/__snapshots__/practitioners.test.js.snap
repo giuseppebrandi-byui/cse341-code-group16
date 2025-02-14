@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Practitioners API Tests - GET Endpoints GET /practitioners should get all practitioners and match snapshot 1`] = `
+[
+  {
+    "_id": "67adf59d365e6487fa46ef12",
+    "address": {
+      "city": "Cityville",
+      "street": "256 Beverly Street",
+      "zip": "12345",
+    },
+    "dea_number": "C91234563",
+    "email": "jeff.morrell@yourhealth.com",
+    "name": "Jeff Morrell",
+    "phone": "555-133-3527",
+    "specialization": "Allergy & Immunology",
+  },
+  {
+    "_id": "67adf59d365e6487fa46ef13",
+    "address": {
+      "city": "Townsville",
+      "street": "433 Park Avenue",
+      "zip": "54321",
+    },
+    "dea_number": "B81234353",
+    "email": "laura.jones@healthcenter.com",
+    "name": "Laura Jones",
+    "phone": "555-987-6543",
+    "specialization": "Behavioral Health",
+  },
+  {
+    "_id": "67adf59d365e6487fa46ef14",
+    "address": {
+      "city": "Villageland",
+      "street": "766 Wood Lane",
+      "zip": "67890",
+    },
+    "dea_number": "B81222353",
+    "email": "james.norton@we-care.com",
+    "name": "James Norton Jr",
+    "phone": "555-456-7000",
+    "specialization": "Endocrinology and Metabolism",
+  },
+  {
+    "_id": "67adf59d365e6487fa46ef15",
+    "address": {
+      "city": "Townsville",
+      "street": "467 Elm Street",
+      "zip": "54321",
+    },
+    "dea_number": "C91224313",
+    "email": "jessica.wilson@medical.com",
+    "name": "Jessica Wilson",
+    "phone": "555-333-7010",
+    "specialization": "Cardiovascular Disease",
+  },
+]
+`;
+
+exports[`Practitioners API Tests - GET Endpoints GET /practitioners should return 400 when no practitioners exist 1`] = `
+{
+  "error": {
+    "message": "No practitioners found.",
+  },
+}
+`;
+
+exports[`Practitioners API Tests - GET Endpoints GET /practitioners/:id should get specific practitioner and match snapshot 1`] = `
+{
+  "_id": "67adf59d365e6487fa46ef12",
+  "address": {
+    "city": "Cityville",
+    "street": "256 Beverly Street",
+    "zip": "12345",
+  },
+  "dea_number": "C91234563",
+  "email": "jeff.morrell@yourhealth.com",
+  "name": "Jeff Morrell",
+  "phone": "555-133-3527",
+  "specialization": "Allergy & Immunology",
+}
+`;
+
+exports[`Practitioners API Tests - GET Endpoints GET /practitioners/:id should return 400 for invalid id format 1`] = `
+{
+  "error": {
+    "message": "Please enter a valid id with a string of 24 hex characters.",
+  },
+}
+`;
+
+exports[`Practitioners API Tests - GET Endpoints GET /practitioners/:id should return 400 for non-existent id 1`] = `
+{
+  "error": {
+    "message": "No practitioner found with entered ID",
+  },
+}
+`;
+
+exports[`Practitioners API Tests - GET Endpoints GET /practitioners/zip/:zip should get practitioners by zip and match snapshot 1`] = `
+[
+  {
+    "_id": "67adf59d365e6487fa46ef12",
+    "address": {
+      "city": "Cityville",
+      "street": "256 Beverly Street",
+      "zip": "12345",
+    },
+    "dea_number": "C91234563",
+    "email": "jeff.morrell@yourhealth.com",
+    "name": "Jeff Morrell",
+    "phone": "555-133-3527",
+    "specialization": "Allergy & Immunology",
+  },
+]
+`;
+
+exports[`Practitioners API Tests - GET Endpoints GET /practitioners/zip/:zip should return 400 when no practitioners exist in zip 1`] = `
+{
+  "error": {
+    "message": "No practitioners found.",
+  },
+}
+`;
