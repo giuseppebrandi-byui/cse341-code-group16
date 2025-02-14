@@ -119,25 +119,45 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Sophia Adams"
                 },
                 "dob": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "09/18/79"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "sophia.adams@example.com"
                 },
                 "address": {
-                  "example": "any"
+                  "type": "object",
+                  "properties": {
+                    "street": {
+                      "type": "string",
+                      "example": "567 Maple Street"
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "Villageland"
+                    },
+                    "zip": {
+                      "type": "string",
+                      "example": "67890"
+                    }
+                  }
                 },
                 "phone": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "555-789-2345"
                 },
                 "insurer": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "National"
                 },
                 "request": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Morbi posuere enim quis ornare laoreet. Donec imperdiet lacus odio, ut sollicitudin velit vulputate non. Sed mattis dolor purus, vel efficitur metus porta vel. Donec in aliquam nisl. Suspendisse venenatis eros molestie nunc eleifend, vel euismod elit tincidunt."
                 }
               }
             }
@@ -219,25 +239,45 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Sophia Adams"
                 },
                 "dob": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "09/18/79"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "sophia.adams@example.com"
                 },
                 "address": {
-                  "example": "any"
+                  "type": "object",
+                  "properties": {
+                    "street": {
+                      "type": "string",
+                      "example": "567 Maple Street"
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "Villageland"
+                    },
+                    "zip": {
+                      "type": "string",
+                      "example": "67890"
+                    }
+                  }
                 },
                 "phone": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "555-789-2345"
                 },
                 "insurer": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "National"
                 },
                 "request": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Morbi posuere enim quis ornare laoreet. Donec imperdiet lacus odio, ut sollicitudin velit vulputate non. Sed mattis dolor purus, vel efficitur metus porta vel. Donec in aliquam nisl. Suspendisse venenatis eros molestie nunc eleifend, vel euismod elit tincidunt."
                 }
               }
             }
@@ -347,22 +387,41 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Jessica Wilson"
                 },
                 "specialization": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Cardiovascular Disease"
                 },
                 "dea_number": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "C91224313"
                 },
                 "address": {
-                  "example": "any"
+                  "type": "object",
+                  "properties": {
+                    "street": {
+                      "type": "string",
+                      "example": "467 Elm Street"
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "Townsville"
+                    },
+                    "zip": {
+                      "type": "string",
+                      "example": "54321"
+                    }
+                  }
                 },
                 "phone": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "555-333-701"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "jessica.wilson@medical.com"
                 }
               }
             }
@@ -444,22 +503,41 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Jessica Wilson"
                 },
                 "specialization": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Cardiovascular Disease"
                 },
                 "dea_number": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "C91224313"
                 },
                 "address": {
-                  "example": "any"
+                  "type": "object",
+                  "properties": {
+                    "street": {
+                      "type": "string",
+                      "example": "467 Elm Street"
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "Townsville"
+                    },
+                    "zip": {
+                      "type": "string",
+                      "example": "54321"
+                    }
+                  }
                 },
                 "phone": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "555-333-701"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "jessica.wilson@medical.com"
                 }
               }
             }
