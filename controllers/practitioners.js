@@ -138,6 +138,19 @@ const createPractitioner = async (req, res, next) => {
         #swagger.description='Creates a practitioner'
 
         #swagger.security = [{OAuth2:["user"]}]
+
+        #swagger.parameters['body'] = { in: 'body', schema: { 
+          name: "Jessica Wilson",
+          specialization: "Cardiovascular Disease",
+          dea_number: "C91224313",
+          address: {
+            street: "467 Elm Street",
+            city: "Townsville",
+            zip: "54321",
+          },
+          phone: "555-333-701",
+          email: "jessica.wilson@medical.com", } 
+        }
         
         #swagger.responses[201] = {description: 'A new practitioner has been added to the database'}
         
@@ -182,6 +195,19 @@ const updatePractitioner = async (req, res, next) => {
     #swagger.description='Updates a practitioner record'
 
     #swagger.security = [{OAuth2:["user"]}]
+
+    #swagger.parameters['body'] = { in: 'body', schema: { 
+          name: "Jessica Wilson",
+          specialization: "Cardiovascular Disease",
+          dea_number: "C91224313",
+          address: {
+            street: "467 Elm Street",
+            city: "Townsville",
+            zip: "54321",
+          },
+          phone: "555-333-701",
+          email: "jessica.wilson@medical.com", } 
+    }
 
     #swagger.responses[400] = {description: 'Invalid record ID or no practitioner record found with that id.'}
      

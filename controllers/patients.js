@@ -76,6 +76,20 @@ const createPatient = async (req, res, next) => {
         #swagger.description='Creates a patient'
 
         #swagger.security = [{OAuth2:["user"]}]
+
+        #swagger.parameters['body'] = { in: 'body', schema: { name: "Sophia Adams",
+          dob: "09/18/79",
+          email: "sophia.adams@example.com",
+          address: {
+            street: "567 Maple Street",
+            city: "Villageland",
+            zip: "67890",
+          },
+          phone: "555-789-2345",
+          insurer: "National",
+          request:
+            "Morbi posuere enim quis ornare laoreet. Donec imperdiet lacus odio, ut sollicitudin velit vulputate non. Sed mattis dolor purus, vel efficitur metus porta vel. Donec in aliquam nisl. Suspendisse venenatis eros molestie nunc eleifend, vel euismod elit tincidunt.",
+        }}
         
         #swagger.responses[400] = {description: 'Some error occurred while creating the patient record.'}
 
@@ -120,6 +134,20 @@ const updatePatient = async (req, res, next) => {
     #swagger.description='Updates a patient record'
 
     #swagger.security = [{OAuth2:["user"]}]
+
+    #swagger.parameters['body'] = { in: 'body', schema: { name: "Sophia Adams",
+          dob: "09/18/79",
+          email: "sophia.adams@example.com",
+          address: {
+            street: "567 Maple Street",
+            city: "Villageland",
+            zip: "67890",
+          },
+          phone: "555-789-2345",
+          insurer: "National",
+          request:
+            "Morbi posuere enim quis ornare laoreet. Donec imperdiet lacus odio, ut sollicitudin velit vulputate non. Sed mattis dolor purus, vel efficitur metus porta vel. Donec in aliquam nisl. Suspendisse venenatis eros molestie nunc eleifend, vel euismod elit tincidunt.",
+    }}
 
     #swagger.responses[400] = {description: 'Invalid record ID or no patient record found with that id.'}
 
